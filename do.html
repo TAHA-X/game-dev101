@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        body{
+            display:flex; height:100vh;
+            justify-content:center;
+            align-items:center;
+            flex-direction:column;
+            background-color:black;
+        }
+        #con{
+            width:190px;
+            height:190px;
+            border-radius:50%;
+            position:relative;
+        }
+        #con:before{
+            content:"";
+            position:absolute;
+            width:40px;
+            height:40px;
+            background-color:rgb(255, 255, 255);
+            top:50%;
+            left:50%;
+            border-radius:50%;
+            transform:translate(-50%,-50%);
+            Z-index:2;
+        }
+        button{
+            margin:14px;
+        }
+        .spiner{
+            position:absolute;
+            height:90px;
+            width:14px;
+            background-color:black;
+            transform-origin:top;
+            border-radius:20px;
+        }
+        .spiner:nth-child(1){
+            left:50%;
+            transform:translateX(-50%);
+            background-color:red;
+        }
+        .spiner:nth-child(2){
+            left:50%;
+            transform:translateX(-50%);
+            transform:rotate(-90deg);
+            top:50%;
+            background-color:rgb(25, 0, 255);
+        }
+        .spiner:nth-child(3){
+            right:50%;
+            transform:translateX(-50%);
+            transform:rotate(90deg);
+            top:50%;
+            background-color:rgb(255, 251, 0);
+        }
+        .spiner:nth-child(4){
+            right:46.2%;
+            transform:translateX(-50%,-50%);
+            transform:rotate(360deg);
+            top:50%;
+            background-color:rgb(0, 255, 21);
+        }
+        #start{
+            padding:7px 14px;
+            border:2px solid red;
+            background-color:transparent;
+            color:red;
+            transition:0.4s;
+            cursor:pointer;
+        }
+        #start:hover{
+            background-color:red;
+            color:white
+        }
+        #stop{
+            padding:7px 14px;
+            border:2px solid red;
+            background-color:transparent;
+            color:red;
+            transition:0.4s;
+            cursor:pointer;
+        }
+        #stop:hover{
+            background-color:red;
+            color:white
+        }
+        .con{
+         animation:cir 1s infinite linear;
+        }
+        @keyframes cir{
+            0%{
+                 transform:rotate(0deg);
+            }
+            100%{
+                transform:rotate(360deg);
+            }
+        }
+        #score{
+            color:green;
+            font-weight:bold;
+            font-size:20px;
+        }
+        #time{
+            color:green;
+            font-weight:bold;
+            font-size:20px;
+        }
+        input{
+            margin:10px;
+            outline:none;
+            border:none;
+            box-shadow:0px 0px 10px 10px red;
+            padding:3px 3px 3px 10px;
+        }
+        ::placeholder{
+            color:red;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1 style="color:red">Game/Dev101</h1>
+   <span style="color:white"> your name : </span> 
+   <input placeholder="your name" id="nm" type="text">
+    <div id="con">
+          <div class="spiner"></div>
+          <div class="spiner"></div>
+          <div class="spiner"></div>
+          <div class="spiner"></div>
+    </div> 
+    <div>
+    <button id="start">start playing</button>
+    <button id="stop">stop playing</button>
+    </div>
+    <h3 style="color:white" id="h3"></h3>
+    <div id="last" style="display:flex; width:300px;
+                justify-content:space-between">
+    <taha style="color:white;">time :</taha> <taha id="time"></taha> 
+   <span style="color:white;">your score :</span> <span id="score"></span>
+   </div>
+</body>
+<script>
+    var i = 0;
+    var start = document.getElementById("start");
+    var stop = document.getElementById("stop");
+    var con = document.getElementById("con");
+    var time = document.getElementById("time");
+    var score = document.getElementById("score");
+    var nm = document.getElementById("nm");
+    var h3 = document.getElementById("h3");
+    start.addEventListener("click", function(){
+        con.classList.add("con");
+        setInterval(function name() {
+            i = i+1;
+        },1000);
+    });
+    stop.addEventListener("click", function(){
+        con.classList.remove("con");
+        h3.innerHTML = "Hello " + nm.value;
+        score.innerHTML = i;
+        time.innerHTML = i + "seconds";
+    });
+</script>
+</html>
